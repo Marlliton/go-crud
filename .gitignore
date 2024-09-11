@@ -13,3 +13,7 @@
 # Db folder
 
 db/
+
+# Temp folder
+
+tmp/
