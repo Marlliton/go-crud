@@ -1,12 +1,15 @@
 package routes
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/Marlliton/go-crud/src/controller"
+	"github.com/gin-gonic/gin"
+)
 
 func InitRoutes(r *gin.RouterGroup) {
 	userGroup := r.Group("/user")
-	userGroup.GET("/:id")
-	userGroup.GET("/:email")
-	userGroup.POST("/")
-	userGroup.PUT("/")
-	userGroup.DELETE("/:id")
+	userGroup.GET("/:id", controller.FindUserByID)
+	userGroup.GET("/email/:email", controller.FindUserByEmail)
+	userGroup.POST("", controller.CreateUser)
+	userGroup.PUT("", controller.UpdateUser)
+	userGroup.DELETE("/:id", controller.DeleteUser)
 }
