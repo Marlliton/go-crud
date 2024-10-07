@@ -1,22 +1,12 @@
 package main
 
-import (
-	"github.com/Marlliton/gopportunities/config"
-	"github.com/Marlliton/gopportunities/router"
-)
+import "github.com/Marlliton/go-crud/config"
 
 var (
 	logger *config.Logger
 )
 
 func main() {
+	// Sample logger
 	logger = config.GetLogger("main")
-	// Initialize configs
-	err := config.Init()
-	if err != nil {
-		logger.Errf("Config initialization error: %v", err)
-		return
-	}
-
-	router.Initialize()
 }

@@ -23,7 +23,7 @@ type Logger struct {
 	writer  io.Writer
 }
 
-func NewLogger(p string) *Logger {
+func newLogger(prefix string) *Logger {
 	writer := io.Writer(os.Stdout)
 
 	logger := log.New(writer, p, log.Ldate|log.Ltime)
@@ -35,6 +35,10 @@ func NewLogger(p string) *Logger {
 		err:     log.New(writer, red+"ERR: ", logger.Flags()),
 		writer:  writer,
 	}
+}
+
+func GetLogger(prefix string) *Logger {
+	return newLogger(prefix)
 }
 
 // Create non-formatted logs
