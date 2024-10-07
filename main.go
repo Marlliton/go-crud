@@ -1,12 +1,19 @@
 package main
 
-import "github.com/Marlliton/go-crud/config"
+import (
+	"fmt"
+	"log"
+	"os"
 
-var (
-	logger *config.Logger
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	// Sample logger
-	logger = config.GetLogger("main")
+
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error to loading .env file", err)
+	}
+
+	fmt.Println(os.Getenv("TESTE"))
 }
