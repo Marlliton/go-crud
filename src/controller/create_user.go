@@ -7,6 +7,7 @@ import (
 	"github.com/Marlliton/go-crud/src/configuration/validation"
 	"github.com/Marlliton/go-crud/src/controller/model/request"
 	"github.com/Marlliton/go-crud/src/model"
+	"github.com/Marlliton/go-crud/src/model/services"
 	"github.com/gin-gonic/gin"
 )
 
@@ -34,7 +35,9 @@ func CreateUser(ctx *gin.Context) {
 		userRequest.Age,
 	)
 
-	if err := domain.CreateUser(); err != nil {
+	service := services.NewUserDomainService()
+
+	if err := service.CreateUser(domain); err != nil {
 		ctx.JSON(err.Code, err)
 		return
 	}
