@@ -6,7 +6,7 @@ import (
 	"github.com/Marlliton/go-crud/src/configuration/logger"
 	"github.com/Marlliton/go-crud/src/configuration/validation"
 	"github.com/Marlliton/go-crud/src/controller/model/request"
-	"github.com/Marlliton/go-crud/src/controller/model/response"
+	"github.com/Marlliton/go-crud/src/model"
 	"github.com/gin-gonic/gin"
 )
 
@@ -27,11 +27,16 @@ func CreateUser(ctx *gin.Context) {
 		return
 	}
 
-	response := response.UserResponse{
-		ID:    "teste",
-		Name:  userRequest.Name,
-		Age:   userRequest.Age,
-		Email: userRequest.Email,
+	domain := model.NewUserDomain(
+		userRequest.Email,
+		userRequest.Name,
+		userRequest.Password,
+		userRequest.Age,
+	)
+
+	if err := domain.CreateUser(); err != nil {
+		ctx.JSON(err.Code, err)
+		return
 	}
 
 	logger.Info(
@@ -39,5 +44,5 @@ func CreateUser(ctx *gin.Context) {
 		logger.Tag("journey", "CreateUser"),
 	)
 
-	ctx.JSON(http.StatusOK, response)
+	ctx.String(http.StatusOK, "")
 }
