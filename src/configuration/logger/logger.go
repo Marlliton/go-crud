@@ -46,6 +46,10 @@ func Error(msg string, err error, tags ...zapcore.Field) {
 	log.Sync()
 }
 
+func Tag(key, value string) zapcore.Field {
+	return zap.String(key, value)
+}
+
 func getLevelLogs() zapcore.Level {
 	switch strings.ToLower(strings.TrimSpace(os.Getenv(LOG_LEVEL))) {
 	case "info":
