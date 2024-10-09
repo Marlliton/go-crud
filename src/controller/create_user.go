@@ -35,7 +35,7 @@ func (uc *userControllerInterface) CreateUser(ctx *gin.Context) {
 		userRequest.Age,
 	)
 
-	domainResult, err := uc.service.CreateUser(domain)
+	domainResult, err := uc.service.CreateUserService(domain)
 	if err != nil {
 		logger.Error(
 			"Error trying to all CreateUser service", err,

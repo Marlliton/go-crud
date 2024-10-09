@@ -6,8 +6,20 @@ import (
 	"github.com/Marlliton/go-crud/src/model"
 )
 
-func (*userDomainService) FindUser(string) (*model.UserDomainInterface, *rest_err.RestErr) {
-	logger.Info("Init FindUser model", logger.Tag("journey", "FindUser"))
+func (ud *userDomainService) FindUserByEmailService(email string) (
+	model.UserDomainInterface,
+	*rest_err.RestErr,
+) {
+	logger.Info("Init FindUserByEmail services", logger.Tag("journey", "FindUserByEmail"))
 
-	return nil, nil
+	return ud.repo.FindUserByEmail(email)
+}
+
+func (ud *userDomainService) FindUserByIDService(id string) (
+	model.UserDomainInterface,
+	*rest_err.RestErr,
+) {
+	logger.Info("Init FindUserByID services", logger.Tag("journey", "FindUserByID"))
+
+	return ud.repo.FindUserByID(id)
 }

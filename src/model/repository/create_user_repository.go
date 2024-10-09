@@ -10,14 +10,10 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-const (
-	COLLECTION_NAME = "users"
-)
-
 func (ur *useRepository) CreateUser(
 	userDomain model.UserDomainInterface,
 ) (model.UserDomainInterface, *rest_err.RestErr) {
-	logger.Info("Init createUser repository")
+	logger.Info("Init createUser repository", logger.Tag("journey", "createUser"))
 
 	collection := ur.databaseConnection.Collection(COLLECTION_NAME)
 

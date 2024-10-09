@@ -8,7 +8,7 @@ import (
 	"github.com/Marlliton/go-crud/src/model"
 )
 
-func (ud *userDomainService) CreateUser(
+func (ud *userDomainService) CreateUserService(
 	userDomain model.UserDomainInterface,
 ) (model.UserDomainInterface, *rest_err.RestErr) {
 

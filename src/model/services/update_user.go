@@ -6,7 +6,7 @@ import (
 	"github.com/Marlliton/go-crud/src/model"
 )
 
-func (*userDomainService) UpdateUser(
+func (*userDomainService) UpdateUserService(
 	userId string,
 	userDomain model.UserDomainInterface,
 ) *rest_err.RestErr {
