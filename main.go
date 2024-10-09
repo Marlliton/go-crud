@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/Marlliton/go-crud/src/configuration/database/mongodb"
 	"github.com/Marlliton/go-crud/src/controller"
 	"github.com/Marlliton/go-crud/src/controller/routes"
 	"github.com/Marlliton/go-crud/src/model/services"
@@ -18,6 +19,8 @@ func main() {
 	if err != nil {
 		log.Fatal("Error to loading .env file", err)
 	}
+
+	mongodb.InitConnection()
 
 	// NOTE: Init userController
 	service := services.NewUserDomainService()
