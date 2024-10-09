@@ -8,7 +8,7 @@ import (
 func (u *userDomain) EncryptPassword() {
 	hash := md5.New()
 	defer hash.Reset()
-	hash.Write([]byte(u.Password))
+	hash.Write([]byte(u.password))
 
-	u.Password = hex.EncodeToString(hash.Sum(nil))
+	u.password = hex.EncodeToString(hash.Sum(nil))
 }
