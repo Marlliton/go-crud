@@ -7,7 +7,7 @@ import (
 )
 
 type UserRepository interface {
-	CreateUser(userDomain model.UserDomainInterface) (model.UserDomainInterface, rest_err.RestErr)
+	CreateUser(userDomain model.UserDomainInterface) (model.UserDomainInterface, *rest_err.RestErr)
 }
 
 type useRepository struct {

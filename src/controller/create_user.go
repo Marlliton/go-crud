@@ -35,7 +35,12 @@ func (uc *userControllerInterface) CreateUser(ctx *gin.Context) {
 		userRequest.Age,
 	)
 
-	if err := uc.service.CreateUser(domain); err != nil {
+	domainResult, err := uc.service.CreateUser(domain)
+	if err != nil {
+		logger.Error(
+			"Error trying to all CreateUser service", err,
+			logger.Tag("journey", "CreateUser"),
+		)
 		ctx.JSON(err.Code, err)
 		return
 	}
@@ -45,5 +50,5 @@ func (uc *userControllerInterface) CreateUser(ctx *gin.Context) {
 		logger.Tag("journey", "CreateUser"),
 	)
 
-	ctx.JSON(http.StatusOK, view.ConvertDomainToResponse(domain))
+	ctx.JSON(http.StatusOK, view.ConvertDomainToResponse(domainResult))
 }
