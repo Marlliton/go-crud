@@ -2,6 +2,6 @@ package controller
 
 import "github.com/gin-gonic/gin"
 
-func UpdateUser(ctx *gin.Context) {
+func (uc *userControllerInterface) UpdateUser(ctx *gin.Context) {
 
 }

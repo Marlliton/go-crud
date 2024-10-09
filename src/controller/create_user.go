@@ -7,11 +7,11 @@ import (
 	"github.com/Marlliton/go-crud/src/configuration/validation"
 	"github.com/Marlliton/go-crud/src/controller/model/request"
 	"github.com/Marlliton/go-crud/src/model"
-	"github.com/Marlliton/go-crud/src/model/services"
+	"github.com/Marlliton/go-crud/src/view"
 	"github.com/gin-gonic/gin"
 )
 
-func CreateUser(ctx *gin.Context) {
+func (uc *userControllerInterface) CreateUser(ctx *gin.Context) {
 	logger.Info(
 		"Init CreateUser controller",
 		logger.Tag("journey", "CreateUser"),
@@ -35,9 +35,7 @@ func CreateUser(ctx *gin.Context) {
 		userRequest.Age,
 	)
 
-	service := services.NewUserDomainService()
-
-	if err := service.CreateUser(domain); err != nil {
+	if err := uc.service.CreateUser(domain); err != nil {
 		ctx.JSON(err.Code, err)
 		return
 	}
@@ -47,5 +45,5 @@ func CreateUser(ctx *gin.Context) {
 		logger.Tag("journey", "CreateUser"),
 	)
 
-	ctx.String(http.StatusOK, "")
+	ctx.JSON(http.StatusOK, view.ConvertDomainToResponse(domain))
 }
