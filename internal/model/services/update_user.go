@@ -17,7 +17,7 @@ func (ud *userDomainService) UpdateUserService(
 
 	err := ud.repo.UpdateUser(userId, userDomain)
 	if err != nil {
-		logger.Info("Init UpdateUser model", logger.Tag("journey", "UpdateUser"))
+		logger.Error("Error to call UpdateUserService", err, logger.Tag("journey", "UpdateUser"))
 		return err
 	}
 
