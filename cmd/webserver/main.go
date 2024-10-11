@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/Marlliton/go-crud/cmd/webserver/controller"
 	"github.com/Marlliton/go-crud/cmd/webserver/controller/routes"
@@ -23,7 +24,10 @@ func main() {
 		log.Fatal("Error to loading .env file", err)
 	}
 
-	database, err := mongodb.NewMongoDBConnection(context.Background())
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	database, err := mongodb.NewMongoDBConnection(ctx)
 	if err != nil {
 		log.Fatalf("Error trying to connect to database, error=%s \n", err.Error())
 		return
