@@ -17,7 +17,7 @@ func (ud *userDomainService) CreateUserService(
 	userDomain.EncryptPassword()
 	userDomainRepository, err := ud.repo.CreateUser(userDomain)
 	if err != nil {
-		logger.Info("Init createUser model", logger.Tag("journey", "CreateUser"))
+		logger.Error("Error to call CreateUser", err, logger.Tag("journey", "CreateUser"))
 		return nil, err
 	}
 
