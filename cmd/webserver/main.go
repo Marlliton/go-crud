@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/Marlliton/go-crud/cmd/webserver/controller"
-	"github.com/Marlliton/go-crud/cmd/webserver/controller/routes"
+	"github.com/Marlliton/go-crud/cmd/webserver/routes"
 	"github.com/Marlliton/go-crud/internal/model/repository"
 	"github.com/Marlliton/go-crud/internal/model/services"
 	"github.com/Marlliton/go-crud/pkg/database/mongodb"
